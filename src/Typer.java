@@ -36,13 +36,20 @@ public class Typer{
             @Override
             public void run() {
 
+                int sleepTimeInMillis;
                 int counter = 0;
                 while(counter <= iters){
 
                     typeAMessage();
                     counter++;
+
+                    if(counter%messages.size() == 0)
+                        sleepTimeInMillis = 13000;
+                    else
+                        sleepTimeInMillis = 5000;
+
                     try {
-                        Thread.sleep(5000);
+                        Thread.sleep(sleepTimeInMillis);
                     }catch(InterruptedException ie){
                         System.out.println("Printing thread was interrupted");
                     }
@@ -52,7 +59,7 @@ public class Typer{
         });
 
         try {
-            Thread.sleep(10000);
+            Thread.sleep(7500);
         }catch(InterruptedException ie){
             System.out.println("Main thread interrupted");
             System.exit(1);
